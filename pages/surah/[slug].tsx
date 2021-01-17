@@ -2,8 +2,8 @@ import * as React from 'react'
 import Head from 'next/head'
 import { NextRouter, useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
+
 const Loading = dynamic(() => import('react-loading-animate'), { ssr: false })
-// import Loading from 'react-loading-animate';
 import 'react-loading-animate/dist/main.css';
 
 const API_URL_ID: string = 'https://api.quran.sutanlab.id/surah'
@@ -38,15 +38,15 @@ export default function SurahDetail(): JSX.Element {
           <title>Loading ..</title>
         )}
       </Head>
-      <div className="surah__detail px-10 -mt-4">
+      <div className="surah__detail px-10 -mt-4 lm:px-3">
         {details ? details.verses.map((vers, index: number) => {
           return (
-            <div className="p-8 border-b border-gray-200 shadow-sm my-2 bg-white">
+            <div className="p-8 border-b border-gray-200 shadow-sm my-2 bg-white lm:p-5" key={index}>
               <p className="text-4xl py-5 text-right text-gray-900 leading-10">{vers.text.arab}</p>
               <p className="text-left text-md text-gray-600 pb-5">{vers.translation.id}</p>
-              <audio controls controlsList="nodownload" style={{ width: '500px' }}>
+              {/* <audio controls controlsList="nodownload" style={{ width: '500px' }}>
                 <source src={vers.audio.primary}/>
-              </audio>
+              </audio> */}
             </div>
           )
         }) : (
