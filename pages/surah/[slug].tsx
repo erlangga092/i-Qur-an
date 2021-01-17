@@ -1,7 +1,9 @@
 import * as React from 'react'
 import Head from 'next/head'
 import { NextRouter, useRouter } from 'next/router'
-import Loading from 'react-loading-animate';
+import dynamic from 'next/dynamic'
+const Loading = dynamic(() => import('react-loading-animate'), { ssr: false })
+// import Loading from 'react-loading-animate';
 import 'react-loading-animate/dist/main.css';
 
 const API_URL_ID: string = 'https://api.quran.sutanlab.id/surah'
@@ -27,7 +29,6 @@ export default function SurahDetail(): JSX.Element {
     fetchSurah()
   }, [])
 
-  console.log(details)  
   return (
     <>
       <Head>
@@ -50,7 +51,7 @@ export default function SurahDetail(): JSX.Element {
           )
         }) : (
           <div className="surah__detail__loading w-full h-screen flex items-center justify-center">
-            <Loading type="creeping" fill="#35495e" />
+            <Loading />
           </div>
         )}
       </div>
