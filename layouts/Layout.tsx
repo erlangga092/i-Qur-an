@@ -4,7 +4,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <SurahNavbar/>
-      <div className="children pt-28">
+      <div className="children" style={{ paddingTop: '7rem' }}>
         {children}
       </div>
     </>

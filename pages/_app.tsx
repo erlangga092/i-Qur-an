@@ -1,5 +1,6 @@
 import '../styles/globals.css'
-import "tailwindcss/tailwind.css"
+import '../styles/globals.css'
+import '../styles/tailwind.css'
 import Layout from '../layouts/Layout'
 import NextNProgress from 'nextjs-progressbar'
 
