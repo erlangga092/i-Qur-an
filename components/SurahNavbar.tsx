@@ -14,6 +14,7 @@ const SurahNavbar = () => {
 
       <style jsx>{`
         .surah__navbar {
+          @apply z-30;
           font-family: 'IBM Plex Mono';
         }
       `}</style>
