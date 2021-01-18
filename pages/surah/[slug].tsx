@@ -41,14 +41,16 @@ export default function SurahDetail({ surah }): JSX.Element {
           font-family: 'IBM Plex Mono';
 
           &__box {
-            @apply p-8 border-b border-gray-200 shadow-sm my-2 bg-white lm:p-5;
+            @apply p-6 border-b border-gray-200 shadow-md my-2 bg-white lm:p-5;
 
             &__arab {
-              @apply text-4xl py-5 text-right text-gray-900 leading-10;
+              @apply text-3xl py-5 text-right text-gray-800;
+              font-family: 'me_quran';
+              line-height: 2.4;
             }
 
             &__translation {
-              @apply text-left text-sm text-gray-600 pb-5;
+              @apply text-left text-sm text-gray-500 pb-5;
             }
           }
 

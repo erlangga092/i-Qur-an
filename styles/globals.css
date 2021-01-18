@@ -3,6 +3,10 @@
 /* end tailwind styles */
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap');
+@font-face {
+  font-family: "me_quran";
+  src: url("static/assets/fonts/me_quran_volt_newmet.ttf");
+}
 
 html,
 body {
