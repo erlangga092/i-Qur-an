@@ -11,19 +11,29 @@ export default function Home({ surah }: InferGetStaticPropsType<typeof getStatic
 
   return (
     <>
-      <div className="app w-full">
+      <div className="home__app w-full">
         <Head>
           <title>i~Qur'an | Aplikasi Qur'an Online</title>
           <link rel="icon" href="/favicon.ico"/>
         </Head>
-        <div className="list px-16 lm:px-2 sm:px-3">
-          <ul className="home__ul grid grid-cols-3 lm:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-5">
+        <div className="home__app__list">
+          <ul className="home__app__list__ul">
             {surahList && surahList.map((sur) => (
               <SurahList key={sur.number} surah={sur} />
             ))}
           </ul>
         </div>
       </div>
+
+      <style jsx>{`
+        .home__app__list {
+          @apply px-16 lm:px-2 sm:px-3;
+
+          &__ul {
+            @apply grid grid-cols-3 lm:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-5;
+          }
+        }
+      `}</style>
     </>
   )
 }5
