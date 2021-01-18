@@ -19,7 +19,7 @@ const SurahList = ({ surah }) => {
     <>
       {/* <Link href='/surah/[slug]' as={`surah/${surah.number}`}> */}
       <Link href={{ pathname: '/surah/[slug]', query: { slug: surah.number } }} as={`surah/${surah.number}`}>
-        <div className="surah__list p-5 text-gray-500 rounded-md border-gray-300 border shadow-md grid grid-cols-2 bg-white cursor-pointer">
+        <div className="surah__list p-5 text-gray-600 rounded-md border-gray-300 border shadow-md grid grid-cols-2 bg-white cursor-pointer">
           <div className="surah__list__left w-full">
             <p className="text-md">{surah.number}</p>
             <li className="text-md">{surah.name.transliteration.id}</li>
