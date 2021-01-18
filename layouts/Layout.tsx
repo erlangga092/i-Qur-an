@@ -4,9 +4,21 @@ const Layout = ({ children }) => {
   return (
     <>
       <SurahNavbar/>
-      <div className="children" style={{ paddingTop: '7rem' }}>
+      <div className="children">
         {children}
       </div>
+
+      <style jsx>{`
+        .children {
+          padding-top: 7rem;
+        }  
+
+        @media screen and (max-width: 768px) {
+          .children {
+            padding-top: 5.5rem;
+          }
+        }
+      `}</style>
     </>
   )
 }
