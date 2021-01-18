@@ -23,7 +23,7 @@ export default function SurahDetail({ surah }): JSX.Element {
             <div className="p-8 border-b border-gray-200 shadow-sm my-2 bg-white lm:p-5" key={index}>
               <p className="text-4xl py-5 text-right text-gray-900 leading-10">{vers.text.arab}</p>
               <p className="text-left text-md text-gray-600 pb-5">{vers.translation.id}</p>
-              <audio controls controlsList="nodownload" style={{ width: '500px' }}>
+              <audio controls controlsList="nodownload" className="z-10" style={{ width: '500px' }}>
                 <source src={vers.audio.primary}/>
               </audio>
             </div>
