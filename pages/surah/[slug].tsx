@@ -38,7 +38,7 @@ export default function SurahDetail(): JSX.Element {
           <title>Loading ..</title>
         )}
       </Head>
-      <div className="surah__detail px-10 -mt-4 lm:px-3">
+      <div className="surah__detail">
         {details ? details.verses.map((vers, index: number) => {
           return (
             <div className="p-8 border-b border-gray-200 shadow-sm my-2 bg-white lm:p-5" key={index}>
@@ -58,6 +58,7 @@ export default function SurahDetail(): JSX.Element {
 
       <style jsx>{`
         .surah__detail {
+          @apply px-10 -mt-4 lm:px-3;
           font-family: 'IBM Plex Mono';
         }
       `}</style>
