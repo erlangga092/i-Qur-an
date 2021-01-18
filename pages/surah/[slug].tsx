@@ -20,16 +20,16 @@ export default function SurahDetail({ surah }): JSX.Element {
       <div className="surah__detail">
         {surah ? surah.verses.map((vers, index: number) => {
           return (
-            <div className="p-8 border-b border-gray-200 shadow-sm my-2 bg-white lm:p-5" key={index}>
-              <p className="text-4xl py-5 text-right text-gray-900 leading-10">{vers.text.arab}</p>
-              <p className="text-left text-md text-gray-600 pb-5">{vers.translation.id}</p>
+            <div className="surah__detail__box" key={index}>
+              <p className="surah__detail__box__arab">{vers.text.arab}</p>
+              <p className="surah__detail__box__translation">{vers.translation.id}</p>
               {/* <audio controls controlsList="nodownload" className="z-10" style={{ width: '500px' }}>
                 <source src={vers.audio.primary}/>
               </audio> */}
             </div>
           )
         }) : (
-          <div className="surah__detail__loading w-full h-screen flex items-center justify-center">
+          <div className="surah__detail__loading">
             <Loading />
           </div>
         )}
@@ -39,19 +39,37 @@ export default function SurahDetail({ surah }): JSX.Element {
         .surah__detail {
           @apply px-10 -mt-4 lm:px-3;
           font-family: 'IBM Plex Mono';
+
+          &__box {
+            @apply p-8 border-b border-gray-200 shadow-sm my-2 bg-white lm:p-5;
+
+            &__arab {
+              @apply text-4xl py-5 text-right text-gray-900 leading-10;
+            }
+
+            &__translation {
+              @apply text-left text-sm text-gray-600 pb-5;
+            }
+          }
+
+          &__loading {
+            @apply w-full h-screen flex items-center justify-center;
+          }
         }
       `}</style>
     </>
   )
 }
 
-export async function getStaticPaths(): Promise<{paths: any, fallback: boolean}> {
-  const res: Response = await fetch(API_URL_ID)
-  const resp = await res.json()
-  const paths = resp.data.map(surah => {
+export async function getStaticPaths() {
+  let arr: number[] = []
+  for (let i: number = 1; i <= 114; i++) {
+    arr.push(i)
+  }
+  const paths = arr.map((ar) => {
     return {
       params: {
-        slug: surah.number.toString()
+        slug: ar.toString()
       }
     }
   })
