@@ -1,6 +1,5 @@
 import * as React from 'react'
 import Head from 'next/head'
-import { NextRouter, useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 
 const Loading = dynamic(() => import('react-loading-animate'), { ssr: false })
@@ -8,38 +7,18 @@ import 'react-loading-animate/dist/main.css';
 
 const API_URL_ID: string = 'https://api.quran.sutanlab.id/surah'
 
-export default function SurahDetail(): JSX.Element {
-  const [details, setDetails] = React.useState(null)
-  const [error, setError] = React.useState(null)
-
-  const router: NextRouter = useRouter()
-  const slug: string | string[] = router.query.slug
-  
-  const fetchSurah = async (): Promise<void> => {
-    try {
-      const res: Response = await fetch(`${API_URL_ID}/${slug}`)
-      const resp = await res.json()
-      setDetails(resp.data)
-    } catch (err) {
-      setError(err.message)
-    }
-  }
-
-  React.useEffect(() => {
-    fetchSurah()
-  }, [])
-
+export default function SurahDetail({ surah }): JSX.Element {
   return (
     <>
       <Head>
-        {details ? (
-          <title>{details.name.short} | {details.name.transliteration.id}</title>
+        {surah ? (
+          <title>{surah.name.short} | {surah.name.transliteration.id}</title>
         ) : (
           <title>Loading ..</title>
         )}
       </Head>
       <div className="surah__detail">
-        {details ? details.verses.map((vers, index: number) => {
+        {surah ? surah.verses.map((vers, index: number) => {
           return (
             <div className="p-8 border-b border-gray-200 shadow-sm my-2 bg-white lm:p-5" key={index}>
               <p className="text-4xl py-5 text-right text-gray-900 leading-10">{vers.text.arab}</p>
@@ -66,3 +45,32 @@ export default function SurahDetail(): JSX.Element {
   )
 }
 
+export async function getStaticPaths(): Promise<{paths: any, fallback: boolean}> {
+  const res: Response = await fetch(API_URL_ID)
+  const resp = await res.json()
+  const paths = resp.data.map(surah => {
+    return {
+      params: {
+        slug: surah.number.toString()
+      }
+    }
+  })
+  return {
+    paths,
+    fallback: false
+  }
+}
+
+export async function getStaticProps({ params: {slug} }) {
+  try {
+    const res: Response = await fetch(`${API_URL_ID}/${slug}`)
+    const resp = await res.json()
+    return {
+      props: {
+        surah: resp.data
+      }
+    }
+  } catch (err) {
+    throw err
+  } 
+}
