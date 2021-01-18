@@ -36,7 +36,7 @@ export default function Home({ surah }: InferGetStaticPropsType<typeof getStatic
       `}</style>
     </>
   )
-}5
+}
 
 export async function getStaticProps() {
   try {
