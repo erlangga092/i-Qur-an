@@ -1,7 +1,6 @@
 import * as React from 'react'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
-
 const Loading = dynamic(() => import('react-loading-animate'), { ssr: false })
 import 'react-loading-animate/dist/main.css';
 
